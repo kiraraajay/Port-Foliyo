@@ -45,8 +45,9 @@
     .menu-toggle { display: none; padding: 8px 0 8px 12px; border: 0; background: none; color: var(--ink); font: 500 12px var(--mono); cursor: pointer; }
 
     .hero { min-height: 590px; position: relative; isolation: isolate; display: grid; align-items: center; overflow: hidden; background: #15372f; color: #fbfaf5; }
-    .hero::before { content: ''; position: absolute; z-index: -2; inset: 0; background: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=2000&q=85') center 52% / cover; opacity: .52; }
-    .hero::after { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgba(15, 40, 33, .96) 0%, rgba(15, 40, 33, .89) 45%, rgba(15, 40, 33, .26) 100%), linear-gradient(0deg, rgba(15, 40, 33, .34), transparent 50%); }
+    .hero::before { content: ''; position: absolute; z-index: -2; inset: 0; background: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=2000&q=85') center 52% / cover no-repeat; }
+    .hero::after { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgba(15, 40, 33, .96) 0%, rgba(15, 40, 33, .89) 45%, rgba(15, 40, 33, .26) 100%); }
+    .hero-layout { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(180px, 340px); align-items: center; gap: 36px; }
     .hero-content { padding-block: 82px 90px; max-width: 780px; animation: arrive .7s ease both; }
     .hero-kicker { display: flex; align-items: center; gap: 10px; color: var(--acid); margin-bottom: 27px; }
     .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--acid); box-shadow: 0 0 0 4px rgba(211, 250, 107, .15); }
@@ -55,12 +56,39 @@
     .hero-role { margin: 27px 0 0; color: #f0f1e8; font-size: clamp(18px, 2.3vw, 25px); font-weight: 500; }
     .hero-copy { margin: 17px 0 0; max-width: 500px; color: #d2ddd4; font-size: 14px; line-height: 1.85; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 32px; }
-    .button { display: inline-flex; align-items: center; gap: 14px; min-height: 45px; padding: 0 17px; border: 1px solid rgba(255,255,255,.55); border-radius: 2px; text-decoration: none; font-size: 12px; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+    .button { display: inline-flex; align-items: center; gap: 14px; min-height: 45px; padding: 0 17px; border: 1px solid rgba(255,255,255,.55); border-radius: 2px; text-decoration: none; font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; transition: background .2s ease, border-color .2s ease, color .2s ease; }
     .button.primary { border-color: var(--acid); background: var(--acid); color: var(--ink); }
     .button.primary:hover { border-color: white; background: white; }
     .button.secondary:hover { border-color: white; background: white; color: var(--ink); }
     .hero-meta { display: flex; align-items: center; gap: 8px; margin-top: 42px; color: #d0dbd1; font: 11px var(--mono); }
     .hero-meta b { color: var(--acid); font-weight: 400; }
+
+    .profile-card { display: flex; justify-content: center; align-items: center; padding-block: 28px 18px; }
+    .profile-frame {
+      position: relative;
+      width: min(100%, 350px);
+      aspect-ratio: 4 / 5;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 24px;
+      overflow: hidden;
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 22px 60px rgba(8, 15, 12, 0.28);
+      backdrop-filter: blur(2px);
+    }
+    .profile-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,0));
+      pointer-events: none;
+    }
+    .profile-frame img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.95) contrast(1.02);
+    }
 
     .intro-strip { border-bottom: 1px solid var(--line); }
     .intro-inner { min-height: 92px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
@@ -76,7 +104,7 @@
     .section-note { max-width: 280px; margin: 0 0 4px; color: var(--muted); font-size: 12px; line-height: 1.75; }
 
     .projects { border-top: 1px solid var(--ink); }
-    .project { display: grid; grid-template-columns: 64px minmax(180px, 1.05fr) minmax(230px, 1.25fr) minmax(170px, .8fr); align-items: center; gap: 22px; min-height: 137px; padding: 24px 0; border-bottom: 1px solid var(--line); transition: padding .22s ease; }
+    .project { display: grid; grid-template-columns: 64px minmax(180px, 1.05fr) minmax(230px, 1.25fr) minmax(170px, .8fr); align-items: center; gap: 22px; min-height: 137px; padding: 24px 0; border-bottom: 1px solid var(--line); transition: padding .2s ease; }
     .project:hover { padding-inline: 10px; }
     .project-number { align-self: start; padding-top: 6px; color: var(--muted); font: 11px var(--mono); }
     .project-title { margin: 0; font-size: 19px; font-weight: 700; line-height: 1.3; }
@@ -111,7 +139,7 @@
     .edu-item p { margin: 0; color: #53615a; font-size: 11px; }
 
     .contact { position: relative; overflow: hidden; margin-top: 94px; padding: 62px 0 57px; background: var(--green); color: #f5f4ec; }
-    .contact::after { content: 'LET\A’S BUILD'; white-space: pre; position: absolute; right: 3%; bottom: -24px; color: rgba(255,255,255,.07); font-size: clamp(72px, 15vw, 190px); line-height: .8; font-weight: 800; pointer-events: none; }
+    .contact::after { content: 'LET\A’S BUILD'; white-space: pre; position: absolute; right: 3%; bottom: -24px; color: rgba(255,255,255,.07); font-size: clamp(72px, 15vw, 190px); line-height: .8; font-weight: 700; }
     .contact-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 30px; }
     .contact h2 { max-width: 650px; margin-top: 13px; font-size: clamp(39px, 7vw, 76px); }
     .contact h2 em { color: var(--acid); font-family: var(--serif); font-weight: 400; }
@@ -138,7 +166,10 @@
       .hero { min-height: 590px; }
       .hero::before { background-position: 58% center; }
       .hero::after { background: linear-gradient(90deg, rgba(15,40,33,.94), rgba(15,40,33,.62)), linear-gradient(0deg, rgba(15,40,33,.42), transparent 70%); }
-      .hero-content { padding-block: 75px 65px; }
+      .hero-layout { grid-template-columns: 1fr; gap: 10px; }
+      .hero-content { padding-block: 75px 20px; }
+      .profile-card { padding-block: 0 30px; }
+      .profile-frame { width: min(100%, 260px); }
       .hero-copy { max-width: 430px; }
       .intro-inner { min-height: 112px; }
       .intro-inner p { font-size: 11px; }
@@ -203,16 +234,24 @@
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap">
-        <div class="hero-content">
-          <div class="hero-kicker eyebrow"><span class="status-dot" aria-hidden="true"></span> Android · Flutter · Jaipur, India</div>
-          <h1 id="hero-title">Ajay<br><span>Kirara.</span></h1>
-          <p class="hero-role">Mobile developer building for the real world.</p>
-          <p class="hero-copy">I turn everyday challenges into thoughtful Android and Flutter experiences, from live order systems to useful tools people carry in their pocket.</p>
-          <div class="hero-actions">
-            <a class="button primary" href="#work">Explore selected work <span aria-hidden="true">↓</span></a>
-            <a class="button secondary" href="mailto:ajaykiara15@gmail.com">Let's talk <span aria-hidden="true">↗</span></a>
+        <div class="hero-layout">
+          <div class="hero-content">
+            <div class="hero-kicker eyebrow"><span class="status-dot" aria-hidden="true"></span> Android · Flutter · Jaipur, India</div>
+            <h1 id="hero-title">Ajay<br><span>Kirara.</span></h1>
+            <p class="hero-role">Mobile developer building for the real world.</p>
+            <p class="hero-copy">I turn everyday challenges into thoughtful Android and Flutter experiences, from live order systems to useful tools people carry in their pocket.</p>
+            <div class="hero-actions">
+              <a class="button primary" href="#work">Explore selected work <span aria-hidden="true">↓</span></a>
+              <a class="button secondary" href="mailto:ajaykiara15@gmail.com">Let's talk <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="hero-meta"><b>03+</b> years building mobile products <span aria-hidden="true">·</span> Kotlin & Dart</div>
           </div>
-          <div class="hero-meta"><b>03+</b> years building mobile products <span aria-hidden="true">·</span> Kotlin & Dart</div>
+
+          <div class="profile-card reveal" aria-label="Profile photo">
+            <div class="profile-frame">
+              <img src="assets/profile.svg" alt="Portrait of Ajay Kirara">
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -275,7 +314,7 @@
 
     <section class="skills-section" id="skills" aria-labelledby="skills-title">
       <div class="wrap skills-layout">
-        <div class="skills-copy reveal"><div class="section-index eyebrow">02 / Toolkit</div><h2 id="skills-title">The right tool for the job.</h2><p>Native Android depth and cross-platform range, with a focus on maintainable architecture and reliable integrations.</p></div>
+        <div class="skills-copy reveal"><div class="section-index eyebrow">02 / Toolkit</div><h2 id="skills-title">The right tool for the job.</h2><p>Native Android depth and cross-platform range, with practical experience shipping products that people use every day.</p></div>
         <div class="skill-groups reveal">
           <div class="skill-group"><h3>Languages</h3><p>Kotlin · Java · Dart</p></div>
           <div class="skill-group"><h3>Mobile</h3><p>Android SDK · Flutter · Jetpack Compose · XML · Material Design</p></div>
@@ -295,11 +334,11 @@
       </div>
       <div class="experience-list">
         <article class="job reveal">
-          <div><h3>Android Developer</h3><div class="job-company">Archive Infotech <span aria-hidden="true">·</span> Jaipur</div><p>Develop and maintain Android applications using Kotlin, Jetpack Compose, MVVM, REST APIs, Firebase, and Room. Integrate APIs and local persistence, build background processing, and collaborate on business, ordering, safety, payment, and utility products.</p></div>
+          <div><h3>Android Developer</h3><div class="job-company">Archive Infotech <span aria-hidden="true">·</span> Jaipur</div><p>Develop and maintain Android applications using Kotlin, Jetpack Compose, MVVM, and Firebase to build clean, production-ready mobile experiences.</p></div>
           <div class="job-date">JUL 2024 — PRESENT</div>
         </article>
         <article class="job reveal">
-          <div><h3>Android Developer</h3><div class="job-company">Reva Consultants LLP <span aria-hidden="true">·</span> Jaipur</div><p>Implemented real-time location tracking and activity monitoring with Firebase Realtime Database. Built and optimized Kotlin and XML interfaces with MVVM and image-loading libraries.</p></div>
+          <div><h3>Android Developer</h3><div class="job-company">Reva Consultants LLP <span aria-hidden="true">·</span> Jaipur</div><p>Implemented real-time location tracking and activity monitoring features, handled API integration, and improved app reliability for field-based workflows.</p></div>
           <div class="job-date">MAR 2023 — JUN 2024</div>
         </article>
       </div>
@@ -325,6 +364,7 @@
     </section>
   </main>
   <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Ajay Kirara</span><a href="#top">Back to top ↑</a><span>Designed & built with care in Jaipur</span></div></footer>
+
   <script>
     const menuButton = document.querySelector('.menu-toggle');
     const navigation = document.querySelector('.nav');
