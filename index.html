@@ -45,9 +45,9 @@
     .menu-toggle { display: none; padding: 8px 0 8px 12px; border: 0; background: none; color: var(--ink); font: 500 12px var(--mono); cursor: pointer; }
 
     .hero { min-height: 590px; position: relative; isolation: isolate; display: grid; align-items: center; overflow: hidden; background: #15372f; color: #fbfaf5; }
-    .hero::before { content: ''; position: absolute; z-index: -2; inset: 0; background: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=2000&q=85') center 52% / cover no-repeat; }
+    .hero::before { content: ''; position: absolute; z-index: -2; inset: 0; background: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=2000&q=85') center/cover no-repeat; }
     .hero::after { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgba(15, 40, 33, .96) 0%, rgba(15, 40, 33, .89) 45%, rgba(15, 40, 33, .26) 100%); }
-    .hero-layout { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(180px, 340px); align-items: center; gap: 36px; }
+    .hero-layout { display: grid; grid-template-columns: 1fr; align-items: center; gap: 36px; }
     .hero-content { padding-block: 82px 90px; max-width: 780px; animation: arrive .7s ease both; }
     .hero-kicker { display: flex; align-items: center; gap: 10px; color: var(--acid); margin-bottom: 27px; }
     .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--acid); box-shadow: 0 0 0 4px rgba(211, 250, 107, .15); }
@@ -56,39 +56,12 @@
     .hero-role { margin: 27px 0 0; color: #f0f1e8; font-size: clamp(18px, 2.3vw, 25px); font-weight: 500; }
     .hero-copy { margin: 17px 0 0; max-width: 500px; color: #d2ddd4; font-size: 14px; line-height: 1.85; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 32px; }
-    .button { display: inline-flex; align-items: center; gap: 14px; min-height: 45px; padding: 0 17px; border: 1px solid rgba(255,255,255,.55); border-radius: 2px; text-decoration: none; font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; transition: background .2s ease, border-color .2s ease, color .2s ease; }
+    .button { display: inline-flex; align-items: center; gap: 14px; min-height: 45px; padding: 0 17px; border: 1px solid rgba(255,255,255,.55); border-radius: 2px; text-decoration: none; font-size: 12px; font-weight: 600; letter-spacing: .02em; }
     .button.primary { border-color: var(--acid); background: var(--acid); color: var(--ink); }
     .button.primary:hover { border-color: white; background: white; }
     .button.secondary:hover { border-color: white; background: white; color: var(--ink); }
     .hero-meta { display: flex; align-items: center; gap: 8px; margin-top: 42px; color: #d0dbd1; font: 11px var(--mono); }
     .hero-meta b { color: var(--acid); font-weight: 400; }
-
-    .profile-card { display: flex; justify-content: center; align-items: center; padding-block: 28px 18px; }
-    .profile-frame {
-      position: relative;
-      width: min(100%, 350px);
-      aspect-ratio: 4 / 5;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 24px;
-      overflow: hidden;
-      background: rgba(255,255,255,.08);
-      box-shadow: 0 22px 60px rgba(8, 15, 12, 0.28);
-      backdrop-filter: blur(2px);
-    }
-    .profile-frame::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,0));
-      pointer-events: none;
-    }
-    .profile-frame img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: saturate(0.95) contrast(1.02);
-    }
 
     .intro-strip { border-bottom: 1px solid var(--line); }
     .intro-inner { min-height: 92px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
@@ -104,7 +77,7 @@
     .section-note { max-width: 280px; margin: 0 0 4px; color: var(--muted); font-size: 12px; line-height: 1.75; }
 
     .projects { border-top: 1px solid var(--ink); }
-    .project { display: grid; grid-template-columns: 64px minmax(180px, 1.05fr) minmax(230px, 1.25fr) minmax(170px, .8fr); align-items: center; gap: 22px; min-height: 137px; padding: 24px 0; border-bottom: 1px solid var(--line); transition: padding .2s ease; }
+    .project { display: grid; grid-template-columns: 64px minmax(180px, 1.05fr) minmax(230px, 1.25fr) minmax(170px, .8fr); align-items: center; gap: 22px; min-height: 137px; padding: 24px 0; border-bottom: 1px solid var(--line); }
     .project:hover { padding-inline: 10px; }
     .project-number { align-self: start; padding-top: 6px; color: var(--muted); font: 11px var(--mono); }
     .project-title { margin: 0; font-size: 19px; font-weight: 700; line-height: 1.3; }
@@ -168,8 +141,6 @@
       .hero::after { background: linear-gradient(90deg, rgba(15,40,33,.94), rgba(15,40,33,.62)), linear-gradient(0deg, rgba(15,40,33,.42), transparent 70%); }
       .hero-layout { grid-template-columns: 1fr; gap: 10px; }
       .hero-content { padding-block: 75px 20px; }
-      .profile-card { padding-block: 0 30px; }
-      .profile-frame { width: min(100%, 260px); }
       .hero-copy { max-width: 430px; }
       .intro-inner { min-height: 112px; }
       .intro-inner p { font-size: 11px; }
@@ -246,12 +217,6 @@
             </div>
             <div class="hero-meta"><b>03+</b> years building mobile products <span aria-hidden="true">·</span> Kotlin & Dart</div>
           </div>
-
-          <div class="profile-card reveal" aria-label="Profile photo">
-            <div class="profile-frame">
-              <img src="assets/profile.svg" alt="Portrait of Ajay Kirara">
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -314,7 +279,7 @@
 
     <section class="skills-section" id="skills" aria-labelledby="skills-title">
       <div class="wrap skills-layout">
-        <div class="skills-copy reveal"><div class="section-index eyebrow">02 / Toolkit</div><h2 id="skills-title">The right tool for the job.</h2><p>Native Android depth and cross-platform range, with practical experience shipping products that people use every day.</p></div>
+        <div class="skills-copy reveal"><div class="section-index eyebrow">02 / Toolkit</div><h2 id="skills-title">The right tool for the job.</h2><p>Native Android depth and cross-platform range, shaped by practical product work across logistics, utilities, and service apps.</p></div>
         <div class="skill-groups reveal">
           <div class="skill-group"><h3>Languages</h3><p>Kotlin · Java · Dart</p></div>
           <div class="skill-group"><h3>Mobile</h3><p>Android SDK · Flutter · Jetpack Compose · XML · Material Design</p></div>
@@ -334,11 +299,11 @@
       </div>
       <div class="experience-list">
         <article class="job reveal">
-          <div><h3>Android Developer</h3><div class="job-company">Archive Infotech <span aria-hidden="true">·</span> Jaipur</div><p>Develop and maintain Android applications using Kotlin, Jetpack Compose, MVVM, and Firebase to build clean, production-ready mobile experiences.</p></div>
+          <div><h3>Android Developer</h3><div class="job-company">Archive Infotech <span aria-hidden="true">·</span> Jaipur</div><p>Develop and maintain Android applications using Kotlin, Jetpack Compose, and Firebase to support real-world product workflows.</p></div>
           <div class="job-date">JUL 2024 — PRESENT</div>
         </article>
         <article class="job reveal">
-          <div><h3>Android Developer</h3><div class="job-company">Reva Consultants LLP <span aria-hidden="true">·</span> Jaipur</div><p>Implemented real-time location tracking and activity monitoring features, handled API integration, and improved app reliability for field-based workflows.</p></div>
+          <div><h3>Android Developer</h3><div class="job-company">Reva Consultants LLP <span aria-hidden="true">·</span> Jaipur</div><p>Implemented real-time location tracking and activity monitoring features, built modular app flows, and improved delivery reliability.</p></div>
           <div class="job-date">MAR 2023 — JUN 2024</div>
         </article>
       </div>
