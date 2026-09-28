@@ -1,0 +1,45 @@
+<svg width="800" height="1000" viewBox="0 0 800 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="100" y1="60" x2="700" y2="980" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E6D5AA"/>
+      <stop offset="1" stop-color="#B5895A"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(400 280) rotate(90) scale(440 360)">
+      <stop stop-color="#F8F2E6" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#F8F2E6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <ellipse cx="400" cy="290" rx="360" ry="310" fill="url(#glow)"/>
+  <g opacity="0.25">
+    <rect x="0" y="0" width="800" height="1000" fill="url(#bg)"/>
+  </g>
+  <rect x="120" y="650" width="560" height="270" rx="28" fill="#2F3C46"/>
+  <path d="M220 680C260 620 330 580 400 580C470 580 540 620 580 680V1000H220V680Z" fill="#2B3F49"/>
+  <path d="M300 650H500C525 650 545 670 545 695V875H255V695C255 670 275 650 300 650Z" fill="#2E3D48"/>
+  <path d="M350 706H450V862H350V706Z" fill="#F4F0E7" opacity="0.3"/>
+  <path d="M370 704H430C446 704 459 717 459 733V874H341V733C341 717 354 704 370 704Z" fill="#1E2C35"/>
+  <circle cx="400" cy="330" r="146" fill="#F0C8A1"/>
+  <path d="M275 350C285 235 342 175 400 175C458 175 515 235 525 350C489 285 456 252 400 252C344 252 311 285 275 350Z" fill="#101F2A"/>
+  <path d="M292 345C300 233 352 164 400 164C448 164 500 233 508 345C475 314 438 290 400 290C362 290 325 314 292 345Z" fill="#0F1E29"/>
+  <path d="M318 337C347 284 374 259 400 259C426 259 453 284 482 337C465 318 438 304 400 304C362 304 335 318 318 337Z" fill="#0F1E29"/>
+  <ellipse cx="345" cy="345" rx="18" ry="22" fill="#111F2A"/>
+  <ellipse cx="455" cy="345" rx="18" ry="22" fill="#111F2A"/>
+  <rect x="340" y="325" width="120" height="30" rx="15" fill="#D7A67B" opacity="0.2"/>
+  <circle cx="340" cy="341" r="58" fill="transparent" stroke="#1B242B" stroke-width="9"/>
+  <circle cx="460" cy="341" r="58" fill="transparent" stroke="#1B242B" stroke-width="9"/>
+  <path d="M340 345C353 334 366 329 381 329H419C435 329 448 334 461 345" stroke="#1B242B" stroke-width="8" stroke-linecap="round"/>
+  <path d="M370 425C385 434 396 437 400 437C404 437 415 434 430 425" stroke="#A7655D" stroke-width="6" stroke-linecap="round"/>
+  <path d="M351 383C364 371 379 365 394 365H406C421 365 436 371 449 383" stroke="#A7655D" stroke-width="6" stroke-linecap="round"/>
+  <path d="M330 520C350 500 373 488 399 488C425 488 449 500 469 520L490 700H310L330 520Z" fill="#E7E7E3" opacity="0.96"/>
+  <path d="M310 700H490L462 915H338L310 700Z" fill="#F4F4F1"/>
+  <path d="M395 492V595" stroke="#D7B08D" stroke-width="8" stroke-linecap="round"/>
+  <path d="M340 522C363 545 382 554 400 554C418 554 437 545 460 522" stroke="#E3D5BF" stroke-width="20" stroke-linecap="round"/>
+  <path d="M310 700H490L462 915H338L310 700Z" fill="url(#shine)" opacity="0.35"/>
+  <defs>
+    <linearGradient id="shine" x1="400" y1="700" x2="400" y2="915" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#D5D7D3"/>
+    </linearGradient>
+  </defs>
+</svg>
