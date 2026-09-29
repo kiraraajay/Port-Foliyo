@@ -40,7 +40,7 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif}
   100%{transform:translate(-40px,50px) scale(.94)}
 }
 .grain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.05;
- background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")}
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.12'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");background-size:140px 140px}
 main{position:relative;z-index:1}
 
 /* ---------- nav ---------- */
@@ -68,7 +68,7 @@ nav a.active{color:#fff;background:var(--grad);box-shadow:0 4px 18px rgba(124,58
 @keyframes blink{50%{opacity:0}}
 .hero p{max-width:640px;color:var(--muted);margin-top:18px;font-size:16px;animation:pop .7s .3s both}
 .cta-row{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;justify-content:center;animation:pop .7s .45s both}
-.btn{padding:14px 30px;border-radius:99px;font-weight:600;font-size:15px;text-decoration:none;transition:transform .25s,box-shadow .25s;cursor:pointer;border:none;font-family:inherit;position:relative;overflow:hidden}
+.btn{padding:14px 30px;border-radius:99px;font-weight:600;font-size:15px;text-decoration:none;transition:transform .25s,box-shadow .25s;cursor:pointer;border:none;font-family:inherit;position:relative;display:inline-flex;align-items:center;justify-content:center}
 .btn-primary{color:#fff;background:var(--grad);background-size:200% 200%;box-shadow:0 8px 28px rgba(124,58,237,.45)}
 .btn-primary:hover{transform:translateY(-3px) scale(1.03);background-position:100% 50%;box-shadow:0 14px 38px rgba(6,182,212,.5)}
 .btn-ghost{color:var(--text);border:1.5px solid rgba(255,255,255,.2);background:rgba(255,255,255,.04)}
@@ -163,6 +163,41 @@ section{padding:100px 6vw;max-width:1150px;margin:0 auto}
 
 footer{text-align:center;padding:36px 20px;color:var(--muted);font-size:13px;border-top:1px solid rgba(255,255,255,.06)}
 footer .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:600}
+
+/* ---------- responsive ---------- */
+@media (max-width: 920px){
+  nav{top:12px;left:50%;transform:translateX(-50%);max-width:92vw;flex-wrap:wrap;justify-content:center;padding:10px 12px}
+  nav a{padding:8px 12px}
+  section{padding:80px 5vw}
+  .hero{padding-top:150px}
+}
+
+@media (max-width: 760px){
+  .hero{padding-top:150px;padding-bottom:50px}
+  .stats{grid-template-columns:repeat(2,minmax(140px,1fr))}
+  .pgrid{grid-template-columns:1fr}
+  .skills,.edu-grid{grid-template-columns:1fr}
+  .contact-card{padding:44px 20px}
+  .contact-btns{flex-direction:column;align-items:stretch}
+  .contact-btns .btn{width:100%}
+  .scroll-hint{display:none}
+}
+
+@media (max-width: 560px){
+  nav{width:calc(100% - 18px);padding:8px}
+  nav a{flex:1 1 calc(33.333% - 8px);text-align:center;padding:8px 10px;min-width:0}
+  .hero h1{line-height:1.08}
+  .hero p{font-size:15px}
+  .cta-row{flex-direction:column;width:100%}
+  .cta-row .btn{width:100%}
+  .stats{grid-template-columns:1fr}
+  .sec-head h2{font-size:32px}
+  .badge{font-size:12px;padding:7px 12px}
+  .titem{padding:22px 18px}
+  .tl{padding-left:26px}
+  .titem::before{left:-23px}
+  .titem:hover{transform:none}
+}
 </style>
 </head>
 <body>
@@ -231,13 +266,13 @@ footer .grad{background:var(--grad);-webkit-background-clip:text;background-clip
     <div class="sgroup reveal" style="transition-delay:.12s"><h3><span class="swatch" style="background:var(--c3)"></span>Architecture</h3>
       <div class="chipline"><span class="chip h-mvvm">MVVM</span><span class="chip h-mvvm">Clean Architecture</span></div></div>
     <div class="sgroup reveal"><h3><span class="swatch" style="background:var(--c4)"></span>Android &amp; UI</h3>
-      <div class="chipline"><span class="chip h-android">XML</span><span class="chip h-android">Material Design</span><span class="chip h-android">Room</span><span class="chip h-android">WorkManager</span></div></div>
+      <div class="chipline"><span class="chip h-android">XML</span><span class="chip h-android">Material Design</span><span class="chip h-android">Room</span><span class="chip h-android">WorkManager</span><span class="chip h-android">Lifecycle</span></div></div>
     <div class="sgroup reveal" style="transition-delay:.06s"><h3><span class="swatch" style="background:var(--c5)"></span>Networking &amp; backend</h3>
-      <div class="chipline"><span class="chip h-api">Retrofit</span><span class="chip h-api">OkHttp</span><span class="chip h-api">REST APIs</span><span class="chip h-firebase">Firebase Realtime DB</span><span class="chip h-firebase">FCM</span><span class="chip h-tools">SQL</span></div></div>
+      <div class="chipline"><span class="chip h-api">Retrofit</span><span class="chip h-api">OkHttp</span><span class="chip h-api">REST APIs</span><span class="chip h-firebase">Firebase Realtime DB</span><span class="chip h-firebase">Firestore</span></div></div>
     <div class="sgroup reveal" style="transition-delay:.12s"><h3><span class="swatch" style="background:var(--c1)"></span>Payments</h3>
       <div class="chipline"><span class="chip h-payment">Razorpay</span><span class="chip h-payment">Stripe Financial Connections</span></div></div>
     <div class="sgroup reveal"><h3><span class="swatch" style="background:var(--c2)"></span>Tools</h3>
-      <div class="chipline"><span class="chip h-tools">Android Studio</span><span class="chip h-tools">Git / GitHub</span><span class="chip h-firebase">Firebase Console</span><span class="chip h-tools">Postman</span><span class="chip h-tools">VS Code</span><span class="chip h-tools">ADB</span></div></div>
+      <div class="chipline"><span class="chip h-tools">Android Studio</span><span class="chip h-tools">Git / GitHub</span><span class="chip h-firebase">Firebase Console</span><span class="chip h-tools">Postman</span></div></div>
     <div class="sgroup reveal" style="transition-delay:.06s"><h3><span class="swatch" style="background:var(--grad)"></span>AI-assisted development</h3>
       <div class="chipline"><span class="chip h-ai">Gemini</span><span class="chip h-ai">Claude</span><span class="chip h-ai">ChatGPT</span><span class="chip h-ai">AI Coding Agents</span></div></div>
   </div>
@@ -322,15 +357,15 @@ var ti=0,ci=0,del=false,el=document.getElementById('typed');
 
 /* ---------- projects ---------- */
 var projects=[
- {n:"Kitchen Order Application",d:"Real-time kitchen display system for managing and completing restaurant orders with live updates.",t:["Kotlin","Retrofit","MVVM","FCM","WorkManager"],f:["kotlin","firebase"],i:"🍳",c:"i1"},
+ {n:"Kitchen Order Application",d:"Real-time kitchen display system for managing and completing restaurant orders with live updates.",t:["Kotlin","Retrofit","MVVM","FCM","WorkManager"],f:["kotlin","firebase"],i:"🛁",c:"i1"},
  {n:"Kiosk Food Order Application",d:"Self-service kiosk app for menu browsing, customization and order placement.",t:["Kotlin","XML","Retrofit","Room"],f:["kotlin"],i:"🛒",c:"i2"},
  {n:"POS Food Order Application",d:"Point-of-Sale app for billing, payments, order management and push notifications.",t:["Kotlin","XML","MVVM","REST APIs","FCM"],f:["kotlin","firebase"],i:"🧾",c:"i3"},
- {n:"Retro Safety Application",d:"Vehicle certificate management app for generating, browsing and searching safety certificate data.",t:["Kotlin","XML","MVVM","REST APIs","Firebase"],f:["kotlin","firebase"],i:"🛡️",c:"i4"},
+ {n:"Retro Safety Application",d:"Vehicle certificate management app for generating, browsing and searching safety certificate data.",t:["Kotlin","XML","MVVM","REST APIs","Firebase"],f:["kotlin","firebase"],i:"🚗",c:"i4"},
  {n:"IGUARD App",d:"Office management app for employee attendance, complaint logging, to-do lists and salary management.",t:["Kotlin","MVVM","REST APIs"],f:["kotlin"],i:"🏢",c:"i5"},
  {n:"TRAIL App",d:"Employee tracking app recording location and activity at regular intervals for admin monitoring.",t:["Kotlin","Firebase","MVVM"],f:["kotlin","firebase"],i:"📍",c:"i1"},
  {n:"DC Document Converter",d:"Flutter utility app for converting images/files to PDF & ZIP, compressing media, QR/barcode tools and more.",t:["Flutter","Dart","Firebase","AdMob","REST APIs"],f:["flutter","firebase"],i:"📄",c:"i2"},
- {n:"Crash Assist Application",d:"Android app focused on crash assistance workflows and emergency-related support features.",t:["Kotlin","Jetpack Compose","Firebase","REST APIs"],f:["kotlin","firebase","compose"],i:"🚨",c:"i3"},
- {n:"Business & Payment Apps",d:"Business, ordering, safety, payment and utility applications delivered at Archive Infotech.",t:["Kotlin","Compose","Razorpay","Stripe","MVVM"],f:["kotlin","compose"],i:"💳",c:"i4"}
+ {n:"Crash Assist Application",d:"Android app focused on crash assistance workflows and emergency-related support features.",t:["Kotlin","Jetpack Compose","Firebase","REST APIs"],f:["kotlin","compose","firebase"],i:"🚨",c:"i3"},
+ {n:"Business & Payment Apps",d:"Business, ordering, safety, payment and utility applications delivered at Archive Infotech.",t:["Kotlin","Compose","Razorpay","Stripe","MVVM"],f:["kotlin","compose"],i:"💼",c:"i4"}
 ];
 var grid=document.getElementById('pgrid');
 projects.forEach(function(p,idx){
