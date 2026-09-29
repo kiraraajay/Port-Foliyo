@@ -1,361 +1,393 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f3f1e9">
-  <meta name="description" content="Ajay Kirara is an Android and Flutter developer building practical mobile products with Kotlin, Dart, and Firebase.">
-  <title>Ajay Kirara — Android & Flutter Developer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      color-scheme: light;
-      --paper: #f3f1e9;
-      --ink: #172b26;
-      --muted: #69736d;
-      --line: #d8d8cf;
-      --green: #225b48;
-      --acid: #d3fa6b;
-      --coral: #ef7959;
-      --blue: #c9ddf1;
-      --serif: Georgia, 'Times New Roman', serif;
-      --sans: 'Manrope', 'Segoe UI', sans-serif;
-      --mono: 'DM Mono', monospace;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ajay Kirara — Flutter & Android Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b14;
+  --bg2:#12121f;
+  --card:#181828;
+  --text:#f2f2fa;
+  --muted:#9a9ab5;
+  --c1:#7c3aed;
+  --c2:#06b6d4;
+  --c3:#f472b6;
+  --c4:#fbbf24;
+  --c5:#34d399;
+  --grad:linear-gradient(135deg,#7c3aed,#06b6d4 55%,#f472b6);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif}
+::selection{background:var(--c1);color:#fff}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--c1),var(--c2));border-radius:99px}
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
-    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
-    a { color: inherit; }
-    button { font: inherit; }
-    .wrap { width: min(1160px, calc(100% - 64px)); margin-inline: auto; }
-    .eyebrow { font: 500 11px var(--mono); letter-spacing: 0; text-transform: uppercase; }
+/* ---------- animated background ---------- */
+.blob{position:fixed;border-radius:50%;filter:blur(90px);opacity:.35;z-index:-1;animation:drift 18s ease-in-out infinite alternate;pointer-events:none}
+.b1{width:480px;height:480px;background:#7c3aed;top:-140px;left:-120px}
+.b2{width:420px;height:420px;background:#06b6d4;top:30%;right:-160px;animation-delay:-6s}
+.b3{width:380px;height:380px;background:#f472b6;bottom:-120px;left:25%;animation-delay:-12s}
+@keyframes drift{
+  0%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(60px,-40px) scale(1.12)}
+  100%{transform:translate(-40px,50px) scale(.94)}
+}
+.grain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.05;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")}
+main{position:relative;z-index:1}
 
-    .topbar { height: 76px; display: flex; align-items: center; border-bottom: 1px solid var(--line); }
-    .topbar-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
-    .wordmark { font-weight: 800; font-size: 15px; text-decoration: none; letter-spacing: 0; }
-    .wordmark span { color: var(--green); }
-    .nav { display: flex; align-items: center; gap: 33px; }
-    .nav a { text-decoration: none; font-size: 12px; color: #44514b; transition: color .2s ease; }
-    .nav a:hover { color: var(--green); }
-    .nav .nav-contact { background: var(--ink); color: var(--paper); padding: 11px 17px; border-radius: 2px; }
-    .nav .nav-contact:hover { color: var(--acid); }
-    .menu-toggle { display: none; padding: 8px 0 8px 12px; border: 0; background: none; color: var(--ink); font: 500 12px var(--mono); cursor: pointer; }
+/* ---------- nav ---------- */
+nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:100;display:flex;gap:4px;padding:8px;border-radius:99px;
+ background:rgba(24,24,40,.65);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.09);
+ transition:box-shadow .3s}
+nav a{color:var(--muted);text-decoration:none;font-size:13.5px;font-weight:500;padding:8px 16px;border-radius:99px;transition:all .25s;white-space:nowrap}
+nav a:hover{color:var(--text)}
+nav a.active{color:#fff;background:var(--grad);box-shadow:0 4px 18px rgba(124,58,237,.45)}
+@media(max-width:640px){nav a{padding:7px 10px;font-size:12px}}
 
-    .hero { min-height: 590px; position: relative; isolation: isolate; display: grid; align-items: center; overflow: hidden; background: #15372f; color: #fbfaf5; }
-    .hero::before { content: ''; position: absolute; z-index: -2; inset: 0; background: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=2000&q=85') center/cover no-repeat; }
-    .hero::after { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgba(15, 40, 33, .96) 0%, rgba(15, 40, 33, .89) 45%, rgba(15, 40, 33, .26) 100%); }
-    .hero-layout { display: grid; grid-template-columns: 1fr; align-items: center; gap: 36px; }
-    .hero-content { padding-block: 82px 90px; max-width: 780px; animation: arrive .7s ease both; }
-    .hero-kicker { display: flex; align-items: center; gap: 10px; color: var(--acid); margin-bottom: 27px; }
-    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--acid); box-shadow: 0 0 0 4px rgba(211, 250, 107, .15); }
-    h1 { margin: 0; font-size: clamp(56px, 9.5vw, 116px); line-height: .91; font-weight: 700; letter-spacing: 0; }
-    h1 span { color: var(--acid); font-family: var(--serif); font-weight: 400; font-style: italic; }
-    .hero-role { margin: 27px 0 0; color: #f0f1e8; font-size: clamp(18px, 2.3vw, 25px); font-weight: 500; }
-    .hero-copy { margin: 17px 0 0; max-width: 500px; color: #d2ddd4; font-size: 14px; line-height: 1.85; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 32px; }
-    .button { display: inline-flex; align-items: center; gap: 14px; min-height: 45px; padding: 0 17px; border: 1px solid rgba(255,255,255,.55); border-radius: 2px; text-decoration: none; font-size: 12px; font-weight: 600; letter-spacing: .02em; }
-    .button.primary { border-color: var(--acid); background: var(--acid); color: var(--ink); }
-    .button.primary:hover { border-color: white; background: white; }
-    .button.secondary:hover { border-color: white; background: white; color: var(--ink); }
-    .hero-meta { display: flex; align-items: center; gap: 8px; margin-top: 42px; color: #d0dbd1; font: 11px var(--mono); }
-    .hero-meta b { color: var(--acid); font-weight: 400; }
+/* ---------- hero ---------- */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 20px 60px;position:relative}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:99px;border:1px solid rgba(255,255,255,.14);
+ background:rgba(255,255,255,.05);font-size:13px;color:var(--muted);margin-bottom:24px;animation:pop .7s cubic-bezier(.2,.9,.3,1.3) both}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--c5);box-shadow:0 0 10px var(--c5);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{transform:scale(1.5);opacity:.6}}
+@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.9)}to{opacity:1;transform:none}}
+.hero h1{font-size:clamp(42px,8vw,86px);font-weight:700;line-height:1.05;letter-spacing:-.02em;animation:pop .7s .1s cubic-bezier(.2,.9,.3,1.3) both}
+.hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 200%;animation:shift 6s ease infinite}
+@keyframes shift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.typed{font-family:'Space Grotesk';font-size:clamp(18px,3vw,26px);color:var(--muted);margin-top:14px;min-height:1.5em;animation:pop .7s .2s both}
+.typed span{color:var(--c4)}
+.caret{display:inline-block;width:3px;height:1em;background:var(--c4);margin-left:3px;vertical-align:-.12em;animation:blink .8s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+.hero p{max-width:640px;color:var(--muted);margin-top:18px;font-size:16px;animation:pop .7s .3s both}
+.cta-row{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;justify-content:center;animation:pop .7s .45s both}
+.btn{padding:14px 30px;border-radius:99px;font-weight:600;font-size:15px;text-decoration:none;transition:transform .25s,box-shadow .25s;cursor:pointer;border:none;font-family:inherit;position:relative;overflow:hidden}
+.btn-primary{color:#fff;background:var(--grad);background-size:200% 200%;box-shadow:0 8px 28px rgba(124,58,237,.45)}
+.btn-primary:hover{transform:translateY(-3px) scale(1.03);background-position:100% 50%;box-shadow:0 14px 38px rgba(6,182,212,.5)}
+.btn-ghost{color:var(--text);border:1.5px solid rgba(255,255,255,.2);background:rgba(255,255,255,.04)}
+.btn-ghost:hover{transform:translateY(-3px);border-color:var(--c2);box-shadow:0 8px 24px rgba(6,182,212,.25)}
+.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);color:var(--muted);font-size:12px;letter-spacing:.15em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
+.mouse{width:24px;height:38px;border:2px solid var(--muted);border-radius:14px;position:relative}
+.mouse::after{content:"";position:absolute;left:50%;top:7px;width:4px;height:8px;margin-left:-2px;border-radius:4px;background:var(--c4);animation:wheel 1.6s infinite}
+@keyframes wheel{0%{transform:translateY(0);opacity:1}70%{transform:translateY(12px);opacity:0}100%{opacity:0}}
 
-    .intro-strip { border-bottom: 1px solid var(--line); }
-    .intro-inner { min-height: 92px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .intro-inner p { margin: 0; max-width: 590px; color: #47534d; font-size: 13px; line-height: 1.7; }
-    .intro-stat { flex: 0 0 auto; display: flex; gap: 11px; align-items: center; color: var(--green); }
-    .intro-stat strong { font: 500 25px var(--serif); }
-    .intro-stat span { max-width: 82px; color: var(--muted); font: 10px/1.5 var(--mono); text-transform: uppercase; }
+/* ---------- sections ---------- */
+section{padding:100px 6vw;max-width:1150px;margin:0 auto}
+.sec-head{margin-bottom:48px}
+.sec-head .kicker{font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
+.k1{color:var(--c2)}.k2{color:var(--c3)}.k3{color:var(--c4)}.k4{color:var(--c5)}.k5{color:var(--c1)}
+.sec-head h2{font-size:clamp(30px,5vw,44px);font-weight:700;margin-top:6px}
+.sec-head h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 
-    section { scroll-margin-top: 76px; }
-    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; padding: 82px 0 29px; }
-    .section-index { margin-bottom: 10px; color: var(--green); }
-    h2 { margin: 0; font-size: clamp(34px, 5vw, 54px); line-height: 1.05; font-weight: 600; letter-spacing: 0; }
-    .section-note { max-width: 280px; margin: 0 0 4px; color: var(--muted); font-size: 12px; line-height: 1.75; }
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.reveal.in{opacity:1;transform:none}
 
-    .projects { border-top: 1px solid var(--ink); }
-    .project { display: grid; grid-template-columns: 64px minmax(180px, 1.05fr) minmax(230px, 1.25fr) minmax(170px, .8fr); align-items: center; gap: 22px; min-height: 137px; padding: 24px 0; border-bottom: 1px solid var(--line); }
-    .project:hover { padding-inline: 10px; }
-    .project-number { align-self: start; padding-top: 6px; color: var(--muted); font: 11px var(--mono); }
-    .project-title { margin: 0; font-size: 19px; font-weight: 700; line-height: 1.3; }
-    .project-kind { display: block; margin-top: 7px; color: var(--green); font: 10px var(--mono); text-transform: uppercase; }
-    .project-desc { margin: 0; color: #59645e; font-size: 12px; line-height: 1.8; }
-    .project-stack { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
-    .tag { padding: 6px 8px; border: 1px solid #d7d9ce; border-radius: 2px; color: #44514b; font: 9px var(--mono); white-space: nowrap; }
-    .project-mark { display: flex; justify-content: flex-end; align-items: center; gap: 8px; color: var(--green); font: 10px var(--mono); }
-    .project-mark i { display: block; width: 8px; height: 8px; border-radius: 50%; background: var(--coral); }
+/* ---------- stats ---------- */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px}
+.stat{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:28px 20px;text-align:center;transition:transform .3s,box-shadow .3s,border-color .3s}
+.stat:hover{transform:translateY(-6px);border-color:rgba(124,58,237,.5);box-shadow:0 16px 40px rgba(124,58,237,.25)}
+.stat .n{font-family:'Space Grotesk';font-size:42px;font-weight:700}
+.stat .n.c1{color:var(--c2)}.stat .n.c2{color:var(--c3)}.stat .n.c3{color:var(--c4)}.stat .n.c4{color:var(--c5)}
+.stat .l{color:var(--muted);font-size:13.5px;margin-top:4px}
 
-    .skills-section { margin-top: 30px; background: #e7e9df; }
-    .skills-layout { display: grid; grid-template-columns: .85fr 1.4fr; gap: 84px; padding: 72px 0 78px; }
-    .skills-copy h2 { max-width: 370px; font-size: clamp(36px, 4.5vw, 49px); }
-    .skills-copy p { max-width: 350px; margin: 18px 0 0; color: #56625b; font-size: 12px; line-height: 1.8; }
-    .skill-groups { border-top: 1px solid #c9cec2; }
-    .skill-group { display: grid; grid-template-columns: 150px 1fr; gap: 20px; padding: 17px 0; border-bottom: 1px solid #c9cec2; }
-    .skill-group h3 { margin: 2px 0 0; color: var(--green); font: 500 10px var(--mono); text-transform: uppercase; }
-    .skill-group p { margin: 0; color: #313f38; font-size: 12px; line-height: 1.9; }
+/* ---------- projects ---------- */
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
+.fbtn{padding:9px 20px;border-radius:99px;border:1.5px solid rgba(255,255,255,.14);background:transparent;color:var(--muted);font-size:13.5px;font-weight:600;cursor:pointer;transition:all .25s;font-family:inherit}
+.fbtn:hover{color:#fff;border-color:rgba(255,255,255,.4);transform:translateY(-2px)}
+.fbtn.active{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 6px 20px rgba(124,58,237,.45)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px}
+.pcard{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:26px;position:relative;overflow:hidden;
+ transition:transform .35s cubic-bezier(.2,.7,.3,1),box-shadow .35s,border-color .35s,opacity .4s,scale .4s}
+.pcard::before{content:"";position:absolute;inset:0;background:var(--grad);opacity:0;transition:opacity .35s}
+.pcard:hover{transform:translateY(-8px) rotate(-.4deg);border-color:rgba(255,255,255,.18);box-shadow:0 20px 50px rgba(6,182,212,.22)}
+.pcard .icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px;position:relative}
+.i1{background:rgba(124,58,237,.18)}.i2{background:rgba(6,182,212,.18)}.i3{background:rgba(244,114,182,.18)}.i4{background:rgba(251,191,36,.18)}.i5{background:rgba(52,211,153,.18)}
+.pcard h3{font-size:18px;margin-bottom:8px;position:relative}
+.pcard p{color:var(--muted);font-size:14px;position:relative}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;position:relative}
+.tag{font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:99px;background:rgba(255,255,255,.07);color:#c9c9e2;transition:background .25s}
+.pcard:hover .tag{background:rgba(255,255,255,.14)}
+.pcard.hide{opacity:0;scale:.85;pointer-events:none;position:absolute;visibility:hidden}
 
-    .experience-list { border-top: 1px solid var(--ink); }
-    .job { display: grid; grid-template-columns: 1fr 190px; gap: 24px; padding: 26px 0; border-bottom: 1px solid var(--line); }
-    .job h3 { margin: 0; font-size: 18px; font-weight: 700; }
-    .job-company { margin: 5px 0 0; color: var(--green); font-size: 12px; }
-    .job p { max-width: 690px; margin: 12px 0 0; color: #59645e; font-size: 12px; line-height: 1.8; }
-    .job-date { justify-self: end; color: var(--muted); font: 10px var(--mono); text-align: right; }
+/* ---------- skills ---------- */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+.sgroup{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:26px;transition:transform .3s,border-color .3s}
+.sgroup:hover{transform:translateY(-5px);border-color:rgba(6,182,212,.5)}
+.sgroup h3{font-size:15px;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.sgroup h3 .swatch{width:12px;height:12px;border-radius:4px}
+.chipline{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:7px 14px;border-radius:99px;font-size:13px;font-weight:500;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);transition:all .25s;cursor:default}
+.chip:hover{transform:translateY(-3px) scale(1.05);border-color:transparent;color:#fff;box-shadow:0 8px 20px rgba(0,0,0,.35)}
+.h-kotlin:hover{background:var(--c1)}.h-java:hover{background:#e76f00}.h-dart:hover{background:#0175c2}
+.h-flutter:hover{background:#02569b}.h-android:hover{background:var(--c5)}.h-compose:hover{background:var(--c2)}
+.h-firebase:hover{background:#dd2c00}.h-api:hover{background:var(--c3)}.h-mvvm:hover{background:#8b5cf6}
+.h-payment:hover{background:var(--c4);color:#111}.h-tools:hover{background:#475569}.h-ai:hover{background:linear-gradient(135deg,var(--c1),var(--c2))}
 
-    .education { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .edu-item { min-height: 146px; padding: 21px 22px; background: var(--blue); }
-    .edu-item:nth-child(2) { background: #f1d8ca; }
-    .edu-item .eyebrow { color: #53615a; }
-    .edu-item h3 { max-width: 400px; margin: 14px 0 7px; font-size: 16px; line-height: 1.45; }
-    .edu-item p { margin: 0; color: #53615a; font-size: 11px; }
+/* ---------- experience timeline ---------- */
+.tl{position:relative;padding-left:34px}
+.tl::before{content:"";position:absolute;left:11px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,var(--c1),var(--c2),var(--c3));border-radius:2px}
+.titem{position:relative;margin-bottom:34px;background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:26px;transition:transform .3s,border-color .3s}
+.titem:hover{transform:translateX(8px);border-color:rgba(244,114,182,.5)}
+.titem::before{content:"";position:absolute;left:-29px;top:32px;width:14px;height:14px;border-radius:50%;background:var(--grad);box-shadow:0 0 0 4px rgba(124,58,237,.25),0 0 16px var(--c1)}
+.titem .when{font-size:12.5px;font-weight:600;color:var(--c4);letter-spacing:.05em}
+.titem h3{font-size:19px;margin:6px 0 2px}
+.titem .org{color:var(--muted);font-size:14px;margin-bottom:10px}
+.titem ul{padding-left:18px;color:var(--muted);font-size:14px}
+.titem li{margin-bottom:4px}
+.titem li::marker{color:var(--c2)}
 
-    .contact { position: relative; overflow: hidden; margin-top: 94px; padding: 62px 0 57px; background: var(--green); color: #f5f4ec; }
-    .contact::after { content: 'LET\A’S BUILD'; white-space: pre; position: absolute; right: 3%; bottom: -24px; color: rgba(255,255,255,.07); font-size: clamp(72px, 15vw, 190px); line-height: .8; font-weight: 700; }
-    .contact-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 30px; }
-    .contact h2 { max-width: 650px; margin-top: 13px; font-size: clamp(39px, 7vw, 76px); }
-    .contact h2 em { color: var(--acid); font-family: var(--serif); font-weight: 400; }
-    .contact-links { display: grid; gap: 11px; justify-items: start; padding-bottom: 5px; }
-    .contact-links a { color: #f5f4ec; font-size: 12px; text-decoration-color: rgba(245,244,236,.45); text-underline-offset: 4px; }
-    .contact-links a:hover { color: var(--acid); }
-    .footer { padding: 19px 0; background: #174234; color: #c6d3c9; }
-    .footer-inner { display: flex; justify-content: space-between; gap: 16px; font: 9px var(--mono); }
-    .footer a { color: inherit; text-decoration: none; }
+/* ---------- education ---------- */
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+.ecard{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:28px;transition:transform .3s,box-shadow .3s,border-color .3s;position:relative;overflow:hidden}
+.ecard::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad)}
+.ecard:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(251,191,36,.18);border-color:rgba(251,191,36,.4)}
+.ecard .m{color:var(--muted);font-size:13px;margin:6px 0 10px}
+.ecard .gpa{display:inline-block;padding:5px 14px;border-radius:99px;background:rgba(52,211,153,.15);color:var(--c5);font-weight:600;font-size:13px}
 
-    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    @keyframes arrive { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+/* ---------- contact ---------- */
+.contact-card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:28px;padding:56px 32px;text-align:center;position:relative;overflow:hidden}
+.contact-card::before{content:"";position:absolute;width:400px;height:400px;border-radius:50%;background:var(--grad);filter:blur(120px);opacity:.25;top:-200px;left:50%;transform:translateX(-50%)}
+.contact-card h2{font-size:clamp(26px,4.5vw,40px);position:relative}
+.contact-card p{color:var(--muted);margin:12px auto 28px;max-width:520px;position:relative}
+.contact-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
+.mail-btn{color:#fff;background:var(--grad);background-size:200% 200%}
+.mail-btn:hover{animation:shift 2s linear infinite;transform:translateY(-3px) scale(1.04);box-shadow:0 14px 38px rgba(244,114,182,.5)}
 
-    @media (max-width: 760px) {
-      .wrap { width: min(100% - 40px, 560px); }
-      .topbar { height: 66px; }
-      .menu-toggle { display: block; }
-      .topbar-inner { position: relative; }
-      .nav { display: none; position: absolute; z-index: 5; top: 53px; left: -20px; right: -20px; padding: 16px 20px 20px; align-items: stretch; gap: 0; flex-direction: column; background: var(--paper); border-bottom: 1px solid var(--line); }
-      .nav.open { display: flex; }
-      .nav a { padding: 12px 0; }
-      .nav .nav-contact { margin-top: 7px; padding: 12px; text-align: center; }
-      .hero { min-height: 590px; }
-      .hero::before { background-position: 58% center; }
-      .hero::after { background: linear-gradient(90deg, rgba(15,40,33,.94), rgba(15,40,33,.62)), linear-gradient(0deg, rgba(15,40,33,.42), transparent 70%); }
-      .hero-layout { grid-template-columns: 1fr; gap: 10px; }
-      .hero-content { padding-block: 75px 20px; }
-      .hero-copy { max-width: 430px; }
-      .intro-inner { min-height: 112px; }
-      .intro-inner p { font-size: 11px; }
-      .intro-stat { gap: 7px; }
-      .intro-stat strong { font-size: 21px; }
-      .intro-stat span { max-width: 68px; font-size: 8px; }
-      .section-head { padding-top: 63px; }
-      .section-note { max-width: 200px; font-size: 10px; }
-      .project { grid-template-columns: 30px 1fr auto; gap: 8px 14px; padding: 20px 0; }
-      .project-title { font-size: 16px; }
-      .project-desc { grid-column: 2 / -1; grid-row: 2; max-width: 480px; }
-      .project-stack { grid-column: 2 / -1; justify-content: flex-start; grid-row: 3; }
-      .project-mark { grid-column: 3; grid-row: 1; font-size: 9px; }
-      .skills-layout { grid-template-columns: 1fr; gap: 30px; padding: 53px 0 58px; }
-      .skills-copy h2 { max-width: 440px; }
-      .skills-copy p { margin-top: 12px; }
-      .skill-group { grid-template-columns: 118px 1fr; gap: 13px; }
-      .job { grid-template-columns: 1fr auto; gap: 8px 16px; }
-      .job-date { grid-column: 1 / -1; grid-row: 1; justify-self: start; text-align: left; }
-      .job h3 { grid-row: 2; }
-      .job-company { grid-row: 3; }
-      .job p { grid-column: 1 / -1; }
-      .education { grid-template-columns: 1fr; gap: 10px; }
-      .edu-item { min-height: 126px; }
-      .contact { margin-top: 68px; padding: 50px 0; }
-      .contact-inner { grid-template-columns: 1fr; gap: 25px; }
-      .contact-links { gap: 12px; }
-    }
-    @media (max-width: 390px) {
-      .wrap { width: calc(100% - 32px); }
-      .intro-inner { gap: 11px; }
-      .intro-stat span { max-width: 57px; }
-      .section-head { align-items: start; flex-direction: column; gap: 12px; }
-      .section-note { max-width: 300px; }
-      .project { grid-template-columns: 24px 1fr auto; gap: 8px; }
-      .project-mark { font-size: 0; }
-      .project-mark i { width: 9px; height: 9px; }
-      .skill-group { grid-template-columns: 1fr; gap: 5px; }
-      .footer-inner { flex-direction: column; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
-      .reveal { opacity: 1; transform: none; }
-    }
-  </style>
+footer{text-align:center;padding:36px 20px;color:var(--muted);font-size:13px;border-top:1px solid rgba(255,255,255,.06)}
+footer .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:600}
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="wrap topbar-inner">
-      <a class="wordmark" href="#top" aria-label="Ajay Kirara home">AK<span>.</span></a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu +</button>
-      <nav class="nav" id="site-nav" aria-label="Main navigation">
-        <a href="#work">Work</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#about">About</a>
-        <a class="nav-contact" href="#contact">Get in touch <span aria-hidden="true">↗</span></a>
-      </nav>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="grain"></div>
+
+<nav id="nav">
+  <a href="#home" class="active">Home</a>
+  <a href="#projects">Projects</a>
+  <a href="#skills">Skills</a>
+  <a href="#experience">Experience</a>
+  <a href="#education">Education</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<main>
+<!-- HERO -->
+<div class="hero" id="home">
+  <div class="badge"><span class="dot"></span>Available for opportunities</div>
+  <h1>Hi, I'm <span class="grad">Ajay Kirara</span></h1>
+  <div class="typed">I build <span id="typed"></span><span class="caret"></span></div>
+  <p>Flutter &amp; Android Developer with 3+ years of experience crafting business, ordering, tracking, utility and payment-enabled apps — with modern AI-assisted workflows.</p>
+  <div class="cta-row">
+    <a href="#projects" class="btn btn-primary">View my work</a>
+    <a href="#contact" class="btn btn-ghost">Get in touch</a>
+  </div>
+  <div class="scroll-hint"><div class="mouse"></div>scroll</div>
+</div>
+
+<!-- STATS -->
+<section>
+  <div class="stats">
+    <div class="stat reveal"><div class="n c1 mono" data-count="3" data-suffix="+">0</div><div class="l">Years of experience</div></div>
+    <div class="stat reveal" style="transition-delay:.08s"><div class="n c2 mono" data-count="9">0</div><div class="l">Apps shipped</div></div>
+    <div class="stat reveal" style="transition-delay:.16s"><div class="n c3 mono" data-count="2">0</div><div class="l">Companies</div></div>
+    <div class="stat reveal" style="transition-delay:.24s"><div class="n c4 mono" data-count="10" data-suffix="+">0</div><div class="l">Technologies</div></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sec-head reveal">
+    <div class="kicker k1">Portfolio</div>
+    <h2>Selected <em>projects</em></h2>
+  </div>
+  <div class="filters reveal">
+    <button class="fbtn active" data-f="all">All</button>
+    <button class="fbtn" data-f="kotlin">Kotlin / Android</button>
+    <button class="fbtn" data-f="flutter">Flutter</button>
+    <button class="fbtn" data-f="firebase">Firebase</button>
+    <button class="fbtn" data-f="compose">Jetpack Compose</button>
+  </div>
+  <div class="pgrid" id="pgrid"></div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sec-head reveal">
+    <div class="kicker k2">Toolbox</div>
+    <h2>Skills &amp; <em>technologies</em></h2>
+  </div>
+  <div class="skills">
+    <div class="sgroup reveal"><h3><span class="swatch" style="background:var(--c1)"></span>Languages</h3>
+      <div class="chipline"><span class="chip h-kotlin">Kotlin</span><span class="chip h-java">Java</span><span class="chip h-dart">Dart</span></div></div>
+    <div class="sgroup reveal" style="transition-delay:.06s"><h3><span class="swatch" style="background:var(--c2)"></span>Frameworks</h3>
+      <div class="chipline"><span class="chip h-android">Android SDK</span><span class="chip h-flutter">Flutter</span><span class="chip h-compose">Jetpack Compose</span></div></div>
+    <div class="sgroup reveal" style="transition-delay:.12s"><h3><span class="swatch" style="background:var(--c3)"></span>Architecture</h3>
+      <div class="chipline"><span class="chip h-mvvm">MVVM</span><span class="chip h-mvvm">Clean Architecture</span></div></div>
+    <div class="sgroup reveal"><h3><span class="swatch" style="background:var(--c4)"></span>Android &amp; UI</h3>
+      <div class="chipline"><span class="chip h-android">XML</span><span class="chip h-android">Material Design</span><span class="chip h-android">Room</span><span class="chip h-android">WorkManager</span></div></div>
+    <div class="sgroup reveal" style="transition-delay:.06s"><h3><span class="swatch" style="background:var(--c5)"></span>Networking &amp; backend</h3>
+      <div class="chipline"><span class="chip h-api">Retrofit</span><span class="chip h-api">OkHttp</span><span class="chip h-api">REST APIs</span><span class="chip h-firebase">Firebase Realtime DB</span><span class="chip h-firebase">FCM</span><span class="chip h-tools">SQL</span></div></div>
+    <div class="sgroup reveal" style="transition-delay:.12s"><h3><span class="swatch" style="background:var(--c1)"></span>Payments</h3>
+      <div class="chipline"><span class="chip h-payment">Razorpay</span><span class="chip h-payment">Stripe Financial Connections</span></div></div>
+    <div class="sgroup reveal"><h3><span class="swatch" style="background:var(--c2)"></span>Tools</h3>
+      <div class="chipline"><span class="chip h-tools">Android Studio</span><span class="chip h-tools">Git / GitHub</span><span class="chip h-firebase">Firebase Console</span><span class="chip h-tools">Postman</span><span class="chip h-tools">VS Code</span><span class="chip h-tools">ADB</span></div></div>
+    <div class="sgroup reveal" style="transition-delay:.06s"><h3><span class="swatch" style="background:var(--grad)"></span>AI-assisted development</h3>
+      <div class="chipline"><span class="chip h-ai">Gemini</span><span class="chip h-ai">Claude</span><span class="chip h-ai">ChatGPT</span><span class="chip h-ai">AI Coding Agents</span></div></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec-head reveal">
+    <div class="kicker k3">Career</div>
+    <h2>Work <em>experience</em></h2>
+  </div>
+  <div class="tl">
+    <div class="titem reveal">
+      <div class="when">JUL 2024 — PRESENT</div>
+      <h3>Android Developer</h3>
+      <div class="org">Archive Infotech · Jaipur</div>
+      <ul>
+        <li>Developed and maintained Android apps with Kotlin, Jetpack Compose, MVVM, REST APIs, Firebase and Room.</li>
+        <li>Integrated RESTful APIs with Retrofit/OkHttp; local persistence and background processing.</li>
+        <li>Delivered business, ordering, safety, payment and utility apps in team collaboration.</li>
+      </ul>
     </div>
-  </header>
-
-  <main id="top">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="wrap">
-        <div class="hero-layout">
-          <div class="hero-content">
-            <div class="hero-kicker eyebrow"><span class="status-dot" aria-hidden="true"></span> Android · Flutter · Jaipur, India</div>
-            <h1 id="hero-title">Ajay<br><span>Kirara.</span></h1>
-            <p class="hero-role">Mobile developer building for the real world.</p>
-            <p class="hero-copy">I turn everyday challenges into thoughtful Android and Flutter experiences, from live order systems to useful tools people carry in their pocket.</p>
-            <div class="hero-actions">
-              <a class="button primary" href="#work">Explore selected work <span aria-hidden="true">↓</span></a>
-              <a class="button secondary" href="mailto:ajaykiara15@gmail.com">Let's talk <span aria-hidden="true">↗</span></a>
-            </div>
-            <div class="hero-meta"><b>03+</b> years building mobile products <span aria-hidden="true">·</span> Kotlin & Dart</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="intro-strip">
-      <div class="wrap intro-inner">
-        <p>From a kitchen counter to a roadside emergency, I build dependable mobile experiences for the moments that matter.</p>
-        <div class="intro-stat"><strong>08</strong><span>selected products<br>across mobile</span></div>
-      </div>
+    <div class="titem reveal" style="transition-delay:.1s">
+      <div class="when">MAR 2023 — JUN 2024</div>
+      <h3>Android Developer</h3>
+      <div class="org">Reva Consultants LLP · Jaipur</div>
+      <ul>
+        <li>Implemented real-time location tracking and activity monitoring with Firebase Realtime Database.</li>
+        <li>Built and optimized Android interfaces using Kotlin, XML, MVVM and image-loading libraries.</li>
+      </ul>
     </div>
+  </div>
+</section>
 
-    <section class="wrap" id="work" aria-labelledby="work-title">
-      <div class="section-head reveal">
-        <div><div class="section-index eyebrow">01 / Selected work</div><h2 id="work-title">Built to be useful.</h2></div>
-        <p class="section-note">A selection of products across food service, workplace tools, safety, tracking, and document utilities.</p>
-      </div>
-      <div class="projects">
-        <article class="project reveal">
-          <span class="project-number">01</span><div><h3 class="project-title">Kitchen Order</h3><span class="project-kind">Restaurant operations</span></div>
-          <p class="project-desc">A real-time kitchen display for organizing incoming restaurant orders and keeping preparation moving.</p>
-          <div class="project-stack"><span class="tag">Kotlin</span><span class="tag">Firebase</span><span class="tag">WorkManager</span></div>
-        </article>
-        <article class="project reveal">
-          <span class="project-number">02</span><div><h3 class="project-title">Kiosk Food Order</h3><span class="project-kind">Self-service ordering</span></div>
-          <p class="project-desc">A self-service flow for browsing a menu, customizing selections, and placing an order at a kiosk.</p>
-          <div class="project-stack"><span class="tag">Kotlin</span><span class="tag">XML</span><span class="tag">Room</span></div>
-        </article>
-        <article class="project reveal">
-          <span class="project-number">03</span><div><h3 class="project-title">POS Food Order</h3><span class="project-kind">Point of sale</span></div>
-          <p class="project-desc">A point-of-sale app for billing, payment workflows, order management, and push notifications.</p>
-          <div class="project-stack"><span class="tag">Kotlin</span><span class="tag">REST APIs</span><span class="tag">FCM</span></div>
-        </article>
-        <article class="project reveal">
-          <span class="project-number">04</span><div><h3 class="project-title">Retro Safety</h3><span class="project-kind">Vehicle safety</span></div>
-          <p class="project-desc">A searchable certificate experience for generating and browsing vehicle safety documentation.</p>
-          <div class="project-stack"><span class="tag">Kotlin</span><span class="tag">MVVM</span><span class="tag">Retrofit</span></div>
-        </article>
-        <article class="project reveal">
-          <span class="project-number">05</span><div><h3 class="project-title">IGUARD</h3><span class="project-kind">Workplace management</span></div>
-          <p class="project-desc">Employee tools for attendance, complaints, task lists, and salary management in one app.</p>
-          <div class="project-stack"><span class="tag">Kotlin</span><span class="tag">MVVM</span><span class="tag">REST APIs</span></div>
-        </article>
-        <article class="project reveal">
-          <span class="project-number">06</span><div><h3 class="project-title">TRAIL</h3><span class="project-kind">Location & activity</span></div>
-          <p class="project-desc">An employee tracking app that records location and activity at regular intervals for administrators.</p>
-          <div class="project-stack"><span class="tag">Kotlin</span><span class="tag">Firebase</span><span class="tag">MVVM</span></div>
-        </article>
-        <article class="project reveal">
-          <span class="project-number">07</span><div><h3 class="project-title">DC Document Converter</h3><span class="project-kind">Flutter utility</span></div>
-          <p class="project-desc">A pocket toolkit for PDF and ZIP conversion, media compression, file handling, and QR/barcode tools.</p>
-          <div class="project-stack"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">AdMob</span></div>
-        </article>
-        <article class="project reveal">
-          <span class="project-number">08</span><div><h3 class="project-title">Crash Assist</h3><span class="project-kind">Emergency support</span></div>
-          <p class="project-desc">An Android app focused on crash assistance workflows and emergency-related support features.</p>
-          <div class="project-stack"><span class="tag">Compose</span><span class="tag">Kotlin</span><span class="tag">Firebase</span></div>
-        </article>
-      </div>
-    </section>
+<!-- EDUCATION -->
+<section id="education">
+  <div class="sec-head reveal">
+    <div class="kicker k4">Academics</div>
+    <h2>My <em>education</em></h2>
+  </div>
+  <div class="edu-grid">
+    <div class="ecard reveal">
+      <h3>Master of Computer Applications (MCA)</h3>
+      <div class="m">Suresh Gyan Vihar University · Jaipur · Pursuing</div>
+      <span class="gpa">In progress</span>
+    </div>
+    <div class="ecard reveal" style="transition-delay:.1s">
+      <h3>Bachelor of Computer Applications (BCA)</h3>
+      <div class="m">MDSU · Ajmer, Rajasthan · 2020 – 2023</div>
+      <span class="gpa">CGPA 7.2 / 10</span>
+    </div>
+  </div>
+</section>
 
-    <section class="skills-section" id="skills" aria-labelledby="skills-title">
-      <div class="wrap skills-layout">
-        <div class="skills-copy reveal"><div class="section-index eyebrow">02 / Toolkit</div><h2 id="skills-title">The right tool for the job.</h2><p>Native Android depth and cross-platform range, shaped by practical product work across logistics, utilities, and service apps.</p></div>
-        <div class="skill-groups reveal">
-          <div class="skill-group"><h3>Languages</h3><p>Kotlin · Java · Dart</p></div>
-          <div class="skill-group"><h3>Mobile</h3><p>Android SDK · Flutter · Jetpack Compose · XML · Material Design</p></div>
-          <div class="skill-group"><h3>Architecture</h3><p>MVVM · Clean Architecture</p></div>
-          <div class="skill-group"><h3>Data & APIs</h3><p>Retrofit · OkHttp · REST APIs · Room · SQL · Firebase Realtime Database · FCM</p></div>
-          <div class="skill-group"><h3>Platform</h3><p>WorkManager · Razorpay · Stripe Financial Connections</p></div>
-          <div class="skill-group"><h3>Tools</h3><p>Android Studio · Git · GitHub · Postman · Firebase Console · ADB · VS Code</p></div>
-          <div class="skill-group"><h3>AI-assisted</h3><p>Gemini · Claude · ChatGPT · AI coding agents</p></div>
-        </div>
-      </div>
-    </section>
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-card reveal">
+    <h2>Let's build something <span style="background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent">great</span> together</h2>
+    <p>Open to full-time Android / Flutter roles and freelance projects. Based in Jaipur, India — happy to work remotely.</p>
+    <div class="contact-btns">
+      <a class="btn mail-btn" href="mailto:ajaykiara15@gmail.com">✉ ajaykiara15@gmail.com</a>
+      <a class="btn btn-ghost" href="tel:+917891181612">📞 +91 78911 81612</a>
+      <a class="btn btn-ghost" href="https://linkedin.com/in/ajay-kirara-999137283" target="_blank" rel="noopener">🔗 LinkedIn</a>
+    </div>
+  </div>
+</section>
+</main>
 
-    <section class="wrap" id="experience" aria-labelledby="experience-title">
-      <div class="section-head reveal">
-        <div><div class="section-index eyebrow">03 / Experience</div><h2 id="experience-title">Making things work.</h2></div>
-        <p class="section-note">Hands-on product development, from implementation through delivery.</p>
-      </div>
-      <div class="experience-list">
-        <article class="job reveal">
-          <div><h3>Android Developer</h3><div class="job-company">Archive Infotech <span aria-hidden="true">·</span> Jaipur</div><p>Develop and maintain Android applications using Kotlin, Jetpack Compose, and Firebase to support real-world product workflows.</p></div>
-          <div class="job-date">JUL 2024 — PRESENT</div>
-        </article>
-        <article class="job reveal">
-          <div><h3>Android Developer</h3><div class="job-company">Reva Consultants LLP <span aria-hidden="true">·</span> Jaipur</div><p>Implemented real-time location tracking and activity monitoring features, built modular app flows, and improved delivery reliability.</p></div>
-          <div class="job-date">MAR 2023 — JUN 2024</div>
-        </article>
-      </div>
-    </section>
+<footer>Designed &amp; built by <span class="grad">Ajay Kirara</span> · Flutter &amp; Android Developer · Jaipur, India</footer>
 
-    <section class="wrap" id="about" aria-labelledby="education-title">
-      <div class="section-head reveal"><div><div class="section-index eyebrow">04 / Education</div><h2 id="education-title">Always learning.</h2></div></div>
-      <div class="education">
-        <article class="edu-item reveal"><div class="eyebrow">In progress</div><h3>Master of Computer Applications</h3><p>Suresh Gyan Vihar University · Jaipur</p></article>
-        <article class="edu-item reveal"><div class="eyebrow">2020 — 2023 · CGPA 7.2 / 10</div><h3>Bachelor of Computer Applications</h3><p>Maharshi Dayanand Saraswati University · Ajmer, Rajasthan</p></article>
-      </div>
-    </section>
+<script>
+/* ---------- typing effect ---------- */
+var phrases=["Android apps.","Flutter apps.","ordering systems.","tracking apps.","payment-enabled apps.","clean, scalable code."];
+var ti=0,ci=0,del=false,el=document.getElementById('typed');
+(function type(){
+  var p=phrases[ti];
+  el.textContent=p.substring(0,ci);
+  if(!del){ci++;if(ci>p.length){del=true;setTimeout(type,1500);return}}
+  else{ci--;if(ci===0){del=false;ti=(ti+1)%phrases.length}}
+  setTimeout(type,del?38:85);
+})();
 
-    <section class="contact" id="contact" aria-labelledby="contact-title">
-      <div class="wrap contact-inner">
-        <div class="reveal"><div class="eyebrow">Have a mobile product in mind?</div><h2 id="contact-title">Let's make it <em>happen.</em></h2></div>
-        <div class="contact-links reveal">
-          <a href="mailto:ajaykiara15@gmail.com">ajaykiara15@gmail.com ↗</a>
-          <a href="tel:+917891181612">+91 78911 81612 ↗</a>
-          <a href="https://www.linkedin.com/in/ajay-kirara-999137283" target="_blank" rel="noreferrer">LinkedIn profile ↗</a>
-        </div>
-      </div>
-    </section>
-  </main>
-  <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Ajay Kirara</span><a href="#top">Back to top ↑</a><span>Designed & built with care in Jaipur</span></div></footer>
-
-  <script>
-    const menuButton = document.querySelector('.menu-toggle');
-    const navigation = document.querySelector('.nav');
-    menuButton.addEventListener('click', () => {
-      const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
-      menuButton.setAttribute('aria-expanded', String(!isOpen));
-      menuButton.textContent = isOpen ? 'Menu +' : 'Close −';
-      navigation.classList.toggle('open', !isOpen);
+/* ---------- projects ---------- */
+var projects=[
+ {n:"Kitchen Order Application",d:"Real-time kitchen display system for managing and completing restaurant orders with live updates.",t:["Kotlin","Retrofit","MVVM","FCM","WorkManager"],f:["kotlin","firebase"],i:"🍳",c:"i1"},
+ {n:"Kiosk Food Order Application",d:"Self-service kiosk app for menu browsing, customization and order placement.",t:["Kotlin","XML","Retrofit","Room"],f:["kotlin"],i:"🛒",c:"i2"},
+ {n:"POS Food Order Application",d:"Point-of-Sale app for billing, payments, order management and push notifications.",t:["Kotlin","XML","MVVM","REST APIs","FCM"],f:["kotlin","firebase"],i:"🧾",c:"i3"},
+ {n:"Retro Safety Application",d:"Vehicle certificate management app for generating, browsing and searching safety certificate data.",t:["Kotlin","XML","MVVM","REST APIs","Firebase"],f:["kotlin","firebase"],i:"🛡️",c:"i4"},
+ {n:"IGUARD App",d:"Office management app for employee attendance, complaint logging, to-do lists and salary management.",t:["Kotlin","MVVM","REST APIs"],f:["kotlin"],i:"🏢",c:"i5"},
+ {n:"TRAIL App",d:"Employee tracking app recording location and activity at regular intervals for admin monitoring.",t:["Kotlin","Firebase","MVVM"],f:["kotlin","firebase"],i:"📍",c:"i1"},
+ {n:"DC Document Converter",d:"Flutter utility app for converting images/files to PDF & ZIP, compressing media, QR/barcode tools and more.",t:["Flutter","Dart","Firebase","AdMob","REST APIs"],f:["flutter","firebase"],i:"📄",c:"i2"},
+ {n:"Crash Assist Application",d:"Android app focused on crash assistance workflows and emergency-related support features.",t:["Kotlin","Jetpack Compose","Firebase","REST APIs"],f:["kotlin","firebase","compose"],i:"🚨",c:"i3"},
+ {n:"Business & Payment Apps",d:"Business, ordering, safety, payment and utility applications delivered at Archive Infotech.",t:["Kotlin","Compose","Razorpay","Stripe","MVVM"],f:["kotlin","compose"],i:"💳",c:"i4"}
+];
+var grid=document.getElementById('pgrid');
+projects.forEach(function(p,idx){
+  var c=document.createElement('div');
+  c.className='pcard reveal';
+  c.style.transitionDelay=(idx%3*.08)+'s';
+  c.dataset.f=p.f.join(',');
+  c.innerHTML='<div class="icon '+p.c+'">'+p.i+'</div><h3>'+p.n+'</h3><p>'+p.d+'</p><div class="tags">'+p.t.map(function(t){return '<span class="tag">'+t+'</span>'}).join('')+'</div>';
+  grid.appendChild(c);
+});
+document.querySelectorAll('.fbtn').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.fbtn').forEach(function(x){x.classList.remove('active')});
+    b.classList.add('active');
+    var f=b.dataset.f;
+    document.querySelectorAll('.pcard').forEach(function(c){
+      var show=f==='all'||c.dataset.f.indexOf(f)>-1;
+      if(show){c.classList.remove('hide');c.classList.add('in')}
+      else{c.classList.add('hide');c.classList.remove('in')}
     });
-    navigation.addEventListener('click', event => {
-      if (event.target.closest('a')) {
-        menuButton.setAttribute('aria-expanded', 'false');
-        menuButton.textContent = 'Menu +';
-        navigation.classList.remove('open');
-      }
-    });
-    document.querySelector('#year').textContent = new Date().getFullYear();
-    const revealObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(element => revealObserver.observe(element));
-  </script>
+  });
+});
+
+/* ---------- reveal on scroll ---------- */
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
+  })
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+
+/* ---------- counters ---------- */
+var cio=new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(!e.isIntersecting)return;
+    var el=e.target,end=+el.dataset.count,suf=el.dataset.suffix||'',start=null;
+    function step(ts){
+      if(!start)start=ts;
+      var p=Math.min((ts-start)/1400,1);
+      var ease=1-Math.pow(1-p,3);
+      el.textContent=Math.round(end*ease)+suf;
+      if(p<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+    cio.unobserve(el);
+  })
+},{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(function(el){cio.observe(el)});
+
+/* ---------- active nav on scroll ---------- */
+var secs=document.querySelectorAll('section[id], #home');
+var links=document.querySelectorAll('nav a');
+window.addEventListener('scroll',function(){
+  var y=window.scrollY+120,cur='home';
+  secs.forEach(function(s){if(s.offsetTop<=y)cur=s.id});
+  links.forEach(function(l){l.classList.toggle('active',l.getAttribute('href')==='#'+cur)});
+},{passive:true});
+</script>
 </body>
 </html>
